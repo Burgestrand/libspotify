@@ -5,6 +5,7 @@ task :build do
   root = File.dirname(__FILE__)
   bins = File.join(root, 'bin/')
   pkgs = File.join(root, 'pkg/')
+  FileUtils.mkdir_p(pkgs, verbose: true)
 
   # We want the right binary location.
   require_relative 'lib/libspotify'
@@ -21,29 +22,44 @@ task :build do
   # Load our gem specification.
   original = Gem::Specification.load('libspotify.gemspec')
 
+  # output bling.
+  puts
+
   # Now build the gem for each platform.
-  platforms.each_pair do |platform, name|
+  gems = platforms.each_pair.map do |platform, name|
     # Make sure we don’t break anything.
     spec = original.dup
 
-    puts "Building for platform #{platform}."
+    print "[#{platform}]: "
     spec.platform = platform
 
     if name.nil? # pure ruby build
       spec.files.delete(LIBSPOTIFY_BIN)
+      FileUtils.rm(LIBSPOTIFY_BIN, verbose: true)
     else
       source_binary = File.join(bins, name)
-      FileUtils.cp(source_binary, LIBSPOTIFY_BIN, verbose: true)
+      begin
+        FileUtils.cp(source_binary, LIBSPOTIFY_BIN, verbose: true)
+      rescue Errno::ENOENT
+        puts "Missing #{source_binary}. Cannot build for #{platform}."
+        exit(false)
+      end
     end
 
-    # Move the build binary to the pkg/ directory.
-    gempath = Gem::Builder.new(spec).build
-    gemname = File.basename(gempath, ".gem")
-    gemname << "-#{platform}.gem"
+    # Annoying.
+    Gem.configuration.verbose = false
 
-    FileUtils.mkdir_p(pkgs, verbose: true)
-    FileUtils.mv(gempath, File.join(pkgs, gemname), verbose: true)
+    # Move the build binary to the pkg/ directory.
+    gemname = Gem::Builder.new(spec).build
+    File.join(pkgs, File.basename(gemname)).tap do |gempath|
+      FileUtils.mv(gemname, gempath)
+    end
   end
+
+  puts
+  puts "All gems successfully built. To publish, do:"
+  puts "  gem push pkg/*.gem"
+  puts "Do not forget to push to GitHub as well."
 end
 
 desc "Launch an IRB console with the gem loaded."
