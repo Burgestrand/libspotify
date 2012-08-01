@@ -9,6 +9,6 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files`.split($/)
   gem.require_paths = ["lib"]
 
-  gem.version       = "12.1.51"
+  gem.version       = "12.1.51.0"
   gem.platform      = Gem::Platform::RUBY
 end
