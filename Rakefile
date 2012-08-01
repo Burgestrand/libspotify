@@ -34,7 +34,7 @@ task :build do
     spec.platform = platform
 
     if name.nil? # pure ruby build
-      spec.files.delete(LIBSPOTIFY_BIN)
+      spec.files.delete('libspotify.library')
       FileUtils.rm(LIBSPOTIFY_BIN, verbose: true)
     else
       source_binary = File.join(bins, name)

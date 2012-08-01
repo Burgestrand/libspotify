@@ -1,1 +1,1 @@
-LIBSPOTIFY_BIN = File.expand_path("../libspotify", File.dirname(__FILE__))
+LIBSPOTIFY_BIN = File.expand_path("../libspotify.library", File.dirname(__FILE__))

@@ -10,8 +10,8 @@ Gem::Specification.new do |gem|
   gem.homepage      = "https://github.com/Burgestrand/libspotify"
   gem.require_paths = ["lib"]
   gem.files         = `git ls-files`.split($/)
-  gem.files        << LIBSPOTIFY_BIN
+  gem.files        << "libspotify.library"
 
-  gem.version       = "12.1.51.0"
+  gem.version       = "12.1.51.1"
   gem.platform      = Gem::Platform::RUBY
 end
