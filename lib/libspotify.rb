@@ -11,4 +11,4 @@ else
   "so"
 end
 
-LIBSPOTIFY_BIN = File.expand_path("../libspotify.#{binary}", gempath)
+LIBSPOTIFY_BIN = File.expand_path("../libspotify.#{suffix}", gempath)
