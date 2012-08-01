@@ -26,7 +26,7 @@ task :build do
   puts
 
   # Now build the gem for each platform.
-  gems = platforms.each_pair.map do |platform, name|
+  gempaths = platforms.each_pair.map do |platform, name|
     # Make sure we don’t break anything.
     spec = original.dup
 
@@ -58,7 +58,9 @@ task :build do
 
   puts
   puts "All gems successfully built. To publish, do:"
-  puts "  gem push pkg/*.gem"
+  gempaths.each do |path|
+    puts "  gem push pkg/#{File.basename(path)}"
+  end
   puts "Do not forget to push to GitHub as well."
 end
 
