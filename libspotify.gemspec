@@ -15,4 +15,9 @@ Gem::Specification.new do |gem|
 
   # No need to include the libspotify binaries in the gem build.
   gem.files.delete_if { |x| x =~ /\Abin/ }
+
+  # No need to include the libspotify binary either if we are in ruby build.
+  if gem.platform == Gem::Platform::RUBY
+    gem.files.delete_if { |x| x =~ /\.(so|dylib|dll)\z/ }
+  end
 end
