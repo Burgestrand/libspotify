@@ -4,7 +4,7 @@ Gem::Specification.new do |gem|
   gem.name          = "libspotify"
   gem.authors       = ["Kim Burgestrand"]
   gem.email         = ["kim@burgestrand.se"]
-  gem.description   = %q{A binary ruby gem for distribution of libspotify.}
+  gem.summary       = %q{A binary ruby gem for distribution of libspotify.}
   gem.homepage      = "github.com/Burgestrand/libspotify"
   gem.require_paths = ["lib"]
 
