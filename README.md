@@ -1,6 +1,7 @@
 # libspotify
 
-This is a mere ruby gem that bundles the libspotify binaries for ease of installation.
+This is a mere ruby gem that bundles the libspotify binaries for ease of installation. If your platform is not supported, please
+create an issue in [the issue tracker](https://github.com/Burgestrand/libspotify/issues).
 
 Please see [the official libspotify documentation at https://developer.spotify.com/technologies/libspotify/ for more information](https://developer.spotify.com/technologies/libspotify/).
 
