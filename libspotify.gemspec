@@ -9,6 +9,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = "https://github.com/Burgestrand/libspotify"
   gem.require_paths = ["lib"]
   gem.files         = `git ls-files`.split($/)
+  gem.license       = "MIT"
 
   gem.version       = Libspotify::GEM_VERSION
   gem.platform      = Gem::Platform::RUBY
