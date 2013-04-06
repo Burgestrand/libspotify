@@ -1,8 +1,8 @@
 require "libspotify"
 
 describe Libspotify do
-  describe "release_name" do
-    subject(:release_name) { Libspotify.release_name }
+  describe "binary_path" do
+    subject(:release_name) { File.basename(Libspotify.binary_path) }
 
     before do
       os, cpu = example.description.split(":", 2)

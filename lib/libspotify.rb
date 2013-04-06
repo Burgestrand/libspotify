@@ -4,10 +4,13 @@ module Libspotify
 
   module_function
 
+  # @return [String] full path to libspotify binary.
   def binary_path
     File.expand_path("../bin/#{release_name}", File.dirname(__FILE__))
   end
 
+  # @api private
+  # @return [String] name of libspotify binary.
   def release_name
     case RbConfig::CONFIG["host_os"]
     when /darwin/
@@ -28,6 +31,8 @@ module Libspotify
     end
   end
 
+  # @api private
+  # @return [Boolean] true if on a hard floating point OS of arm
   def hard_float?
     `readelf -a #{RbConfig.ruby}`.match(/Tag_ABI_VFP_args/)
   end
