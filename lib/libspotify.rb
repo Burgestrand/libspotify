@@ -24,7 +24,7 @@ module Libspotify
       when /armv(\d+)?/
         v  = $1
         hf = "hf" if hard_float?
-        "armv#{v}#{hf}-linux"
+        "armv5#{hf}-linux"
       end
     else
       "unknown-%s-%s" % RbConfig::CONFIG.values_at("host_cpu", "host_os")

@@ -33,11 +33,11 @@ describe Libspotify do
       end
 
       specify "linux-gnueabi:armv6l" do
-        release_name.should eq "armv6-linux"
+        release_name.should eq "armv5-linux"
       end
 
       specify "linux-gnueabi:armv7l" do
-        release_name.should eq "armv7-linux"
+        release_name.should eq "armv5-linux"
       end
     end
 
@@ -49,11 +49,11 @@ describe Libspotify do
       end
 
       specify "linux-gnueabi:armv6l" do
-        release_name.should eq "armv6hf-linux"
+        release_name.should eq "armv5hf-linux"
       end
 
       specify "linux-gnueabi:armv7l" do
-        release_name.should eq "armv7hf-linux"
+        release_name.should eq "armv5hf-linux"
       end
     end
 
