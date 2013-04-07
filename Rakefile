@@ -76,7 +76,7 @@ task :build do
   end
 
   puts
-  puts "Do not forget to push to GitHub as well."
+  puts "Do not forget to tag and push to GitHub as well."
 end
 
 desc "Launch an IRB console with the gem loaded."
