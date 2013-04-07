@@ -48,7 +48,11 @@ task :build do
 
     if source_binaries.empty?
       puts "Pure ruby build."
-      spec.post_install_message = "Binary libspotify gem could not be installed. You will need to install libspotify separately."
+      spec.post_install_message = <<-MSG.gsub(/ {2,}/, " ")
+        Binary libspotify gem could not be installed. You will need to install libspotify separately.
+        If you are on ARM (e.g. Raspberry PI), you might want to install the gem with explicit --platform:
+        $> gem install libspotify --platform arm-linux
+      MSG
     else
       source_binaries.each do |binary|
         src_name  = "bin/#{binaries[binary]}"

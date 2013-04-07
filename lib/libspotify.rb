@@ -1,6 +1,6 @@
 module Libspotify
   VERSION = "12.1.51"
-  GEM_VERSION = "#{VERSION}.2"
+  GEM_VERSION = "#{VERSION}.3"
 
   module_function
 
