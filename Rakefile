@@ -48,6 +48,7 @@ task :build do
 
     if source_binaries.empty?
       puts "Pure ruby build."
+      spec.post_install_message = "Binary libspotify gem could not be installed. You will need to install libspotify separately."
     else
       source_binaries.each do |binary|
         src_name  = "bin/#{binaries[binary]}"
