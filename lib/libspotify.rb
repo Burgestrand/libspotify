@@ -22,10 +22,11 @@ module Libspotify
       when /86/
         "i686-linux"
       when /armv(\d+)?/
-        v  = $1
         hf = "hf" if hard_float?
         "armv5#{hf}-linux"
       end
+    when /mingw|mswin/
+      "windows.dll"
     else
       "unknown-%s-%s" % RbConfig::CONFIG.values_at("host_cpu", "host_os")
     end
