@@ -67,7 +67,7 @@ describe Libspotify do
   end
 
   specify "GEM_VERSION" do
-    Libspotify::GEM_VERSION.should eq "12.1.51.2"
+    Libspotify::GEM_VERSION.should match(/\A#{Regexp.quote(Libspotify::VERSION)}/)
   end
 
   specify "VERSION" do

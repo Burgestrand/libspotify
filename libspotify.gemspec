@@ -14,4 +14,5 @@ Gem::Specification.new do |gem|
 
   gem.version       = Libspotify::GEM_VERSION
   gem.platform      = Gem::Platform::RUBY
+  gem.add_development_dependency "rspec"
 end
