@@ -79,6 +79,42 @@ task :build do
   puts "Do not forget to tag and push to GitHub as well."
 end
 
+desc "Download all known libspotify releases and unpack them"
+task :download do
+  urls = %w[
+    https://developer.spotify.com/download/libspotify/libspotify-12.1.64-iOS-universal.zip
+    https://developer.spotify.com/download/libspotify/libspotify-12.1.51-Android-arm-release.tar.gz
+    https://developer.spotify.com/download/libspotify/libspotify-12.1.51-win32-release.zip
+    https://developer.spotify.com/download/libspotify/libspotify-12.1.51-Darwin-universal.zip
+    https://developer.spotify.com/download/libspotify/libspotify-12.1.51-Linux-i686-release.tar.gz
+    https://developer.spotify.com/download/libspotify/libspotify-12.1.51-Linux-x86_64-release.tar.gz
+    https://developer.spotify.com/download/libspotify/libspotify-12.1.51-Linux-armv5-release.tar.gz
+    https://developer.spotify.com/download/libspotify/libspotify-12.1.51-Linux-armv6-release.tar.gz
+    https://developer.spotify.com/download/libspotify/libspotify-12.1.51-Linux-armv7-release.tar.gz
+    https://developer.spotify.com/download/libspotify/libspotify-12.1.103-Linux-armv6-bcm2708hardfp-release.tar.gz
+  ]
+
+  Dir.chdir "bin" do
+    urls.map do |url|
+      Thread.new do
+        unless File.exist?(File.basename(url))
+          sh "curl", "-O", "-s", url
+        else
+          puts "Skipping #{url}."
+        end
+      end
+    end.map(&:join)
+
+    Dir["./*.zip"].each do |zipfile|
+      sh "unzip", zipfile, "-d", File.basename(zipfile, ".zip")
+    end
+
+    Dir["./*.tar.gz"].each do |tarfile|
+      sh "tar", "xvfz", tarfile
+    end
+  end
+end
+
 desc "Launch an IRB console with the gem loaded."
 task :console do
   exec "irb -Ilib -rlibspotify"
