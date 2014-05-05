@@ -8,7 +8,7 @@ module Libspotify
     "x86-linux"        => %w"x86-linux",
     "x86_64-linux"     => %w"x86_64-linux",
     "arm-linux"        => %w"armv6-linux armv6hf-linux",
-    "x86-mingw32"      => %w"x86-windows",
+    "x86-mingw32"      => %w"x86-windows.dll",
   }
 
   class << self
@@ -76,7 +76,7 @@ module Libspotify
       when /linux/
         "linux"
       when /mingw|mswin/
-        "windows"
+        "mingw32"
       else
         RbConfig::CONFIG["host_os"]
       end

@@ -25,6 +25,10 @@ describe Libspotify do
       release_name.should eq "x86_64-linux"
     end
 
+    specify "mingw32:i686" do
+      release_name.should eq "x86-windows.dll"
+    end
+
     context "soft float" do
       before { Libspotify.stub(hard_float?: false) }
 
