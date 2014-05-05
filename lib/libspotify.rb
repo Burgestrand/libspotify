@@ -21,7 +21,7 @@ module Libspotify
     def release_name
       host_platform = Gem::Platform.new(host_string)
 
-      platform, binaries = PLATFORMS.find do |platform, binaries|
+      _, binaries = PLATFORMS.find do |platform, _|
         Gem::Platform.new(platform) === host_platform
       end
 
@@ -33,12 +33,12 @@ module Libspotify
         host_version = $1.to_i
         host_hf = $2
 
-        matches = binaries.select do |binary|
-          version, hf = binary.match(/armv(\d+)(hf)?/)[1..2]
+        matches = binaries.select do |bin|
+          version, hf = bin.match(/armv(\d+)(hf)?/)[1..2]
           hf == host_hf && version.to_i <= host_version
         end
 
-        matches.max_by { |binary| binary[/armv(\d+)/, 1].to_i }
+        matches.max_by { |bin| bin[/armv(\d+)/, 1].to_i }
       else
         nil # no rules for matching binaries, what to do?
       end
