@@ -18,9 +18,10 @@ task :build do
     "i686-linux"        => %w"i686-linux",
     "x86_64-linux"      => %w"x86_64-linux",
     "arm-linux"         => %w"armv5-linux",
-    "universal-java"    => %w"universal-darwin i686-linux x86_64-linux armv5-linux",
     Gem::Platform::RUBY => [], # fallback platform
   }
+
+  platforms["universal-java"] = platforms.values.flatten.uniq
 
   # Maps binaries to system path.
   binaries =
