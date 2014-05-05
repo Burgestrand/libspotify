@@ -21,4 +21,5 @@ DESCRIPTION
   gem.version       = Libspotify::GEM_VERSION
   gem.platform      = Gem::Platform::RUBY
   gem.add_development_dependency "rspec", "~> 2.0"
+  gem.add_development_dependency "rake", "~> 10.0"
 end
