@@ -18,7 +18,7 @@ describe Libspotify do
     end
 
     specify "linux-gnu:i686" do
-      release_name.should eq "i686-linux"
+      release_name.should eq "x86-linux"
     end
 
     specify "linux-gnu:x86_64" do
@@ -29,15 +29,18 @@ describe Libspotify do
       before { Libspotify.stub(hard_float?: false) }
 
       specify "linux-gnueabi:armv5l" do
+        Libspotify.stub(arm_version: 5)
         release_name.should eq "armv5-linux"
       end
 
       specify "linux-gnueabi:armv6l" do
-        release_name.should eq "armv5-linux"
+        Libspotify.stub(arm_version: 6)
+        release_name.should eq "armv6-linux"
       end
 
       specify "linux-gnueabi:armv7l" do
-        release_name.should eq "armv5-linux"
+        Libspotify.stub(arm_version: 7)
+        release_name.should eq "armv6-linux"
       end
     end
 
@@ -45,20 +48,27 @@ describe Libspotify do
       before { Libspotify.stub(hard_float?: true) }
 
       specify "linux-gnueabi:armv5l" do
+        Libspotify.stub(arm_version: 5)
         release_name.should eq "armv5hf-linux"
       end
 
       specify "linux-gnueabi:armv6l" do
-        release_name.should eq "armv5hf-linux"
+        Libspotify.stub(arm_version: 6)
+        release_name.should eq "armv6hf-linux"
       end
 
       specify "linux-gnueabi:armv7l" do
-        release_name.should eq "armv5hf-linux"
+        Libspotify.stub(arm_version: 7)
+        release_name.should eq "armv6hf-linux"
       end
     end
 
+    specify "linux:weird-cpu" do
+      release_name.should eq "weird-cpu-linux"
+    end
+
     specify "weird-os:weird-cpu" do
-      release_name.should eq "unknown-weird-cpu-weird-os"
+      release_name.should eq "weird-cpu-weird-os"
     end
   end
 

@@ -11,30 +11,22 @@ task :build do
   # We want the right binary location.
   require_relative "lib/libspotify"
 
-  # Maps platform to libspotify binary name.
-  platforms =
-  {
-    "universal-darwin"  => %w"universal-darwin",
-    "i686-linux"        => %w"i686-linux",
-    "x86_64-linux"      => %w"x86_64-linux",
-    "arm-linux"         => %w"armv5-linux",
-    Gem::Platform::RUBY => [], # fallback platform
-  }
-
+  platforms = Libspotify::PLATFORMS.dup
+  platforms[Gem::Platform::RUBY] = [] # fallback platform
   platforms["universal-java"] = platforms.values.flatten.uniq
 
   # Maps binaries to system path.
   binaries =
   {
     "universal-darwin" => "libspotify-12.1.51-Darwin-universal/libspotify-12.1.51-Darwin-universal/libspotify.framework/Versions/Current/libspotify",
-    "i686-linux"       => "libspotify-12.1.51-Linux-i686-release/lib/libspotify.so",
+    "x86-linux"        => "libspotify-12.1.51-Linux-i686-release/lib/libspotify.so",
     "x86_64-linux"     => "libspotify-12.1.51-Linux-x86_64-release/lib/libspotify.so",
     "armv5-linux"      => "libspotify-12.1.51-Linux-armv5-release/lib/libspotify.so",
     "armv6hf-linux"    => "libspotify-12.1.103-Linux-armv6-bcm2708hardfp-release/lib/libspotify.so",
     # armv5 works on both armv6 and armv7, so we always use armv5.
     "armv6-linux"      => "libspotify-12.1.51-Linux-armv6-release/lib/libspotify.so",
     "armv7-linux"      => "libspotify-12.1.51-Linux-armv7-release/lib/libspotify.so",
-    "i686-windows"     => "libspotify-12.1.51-win32-release/lib/libspotify.dll",
+    "x86-windows"      => "libspotify-12.1.51-win32-release/lib/libspotify.dll",
   }
 
   # Load our gem specification.
