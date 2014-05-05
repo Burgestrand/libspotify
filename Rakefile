@@ -26,7 +26,7 @@ task :build do
     # armv5 works on both armv6 and armv7, so we always use armv5.
     "armv6-linux"      => "libspotify-12.1.51-Linux-armv6-release/lib/libspotify.so",
     "armv7-linux"      => "libspotify-12.1.51-Linux-armv7-release/lib/libspotify.so",
-    "x86-windows"      => "libspotify-12.1.51-win32-release/lib/libspotify.dll",
+    "x86-windows.dll"  => "libspotify-12.1.51-win32-release/lib/libspotify.dll",
   }
 
   # Load our gem specification.
@@ -50,7 +50,7 @@ task :build do
       MSG
     else
       source_binaries.each do |binary|
-        src_name  = "bin/#{binaries[binary]}"
+        src_name  = "bin/#{binaries.fetch(binary)}"
         dest_name = "bin/#{binary}"
         FileUtils.cp(src_name, dest_name, verbose: true)
         spec.files << dest_name
