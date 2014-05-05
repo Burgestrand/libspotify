@@ -25,13 +25,15 @@ task :build do
   # Maps binaries to system path.
   binaries =
   {
-    "universal-darwin" => "libspotify-12.1.51-Darwin-universal/libspotify.framework/Versions/Current/libspotify",
+    "universal-darwin" => "libspotify-12.1.51-Darwin-universal/libspotify-12.1.51-Darwin-universal/libspotify.framework/Versions/Current/libspotify",
     "i686-linux"       => "libspotify-12.1.51-Linux-i686-release/lib/libspotify.so",
     "x86_64-linux"     => "libspotify-12.1.51-Linux-x86_64-release/lib/libspotify.so",
     "armv5-linux"      => "libspotify-12.1.51-Linux-armv5-release/lib/libspotify.so",
+    "armv6hf-linux"    => "libspotify-12.1.103-Linux-armv6-bcm2708hardfp-release/lib/libspotify.so",
     # armv5 works on both armv6 and armv7, so we always use armv5.
-    # "armv6-linux"      => "libspotify-12.1.51-Linux-armv6-release/lib/libspotify.so",
-    # "armv7-linux"      => "libspotify-12.1.51-Linux-armv7-release/lib/libspotify.so",
+    "armv6-linux"      => "libspotify-12.1.51-Linux-armv6-release/lib/libspotify.so",
+    "armv7-linux"      => "libspotify-12.1.51-Linux-armv7-release/lib/libspotify.so",
+    "i686-windows"     => "libspotify-12.1.51-win32-release/lib/libspotify.dll",
   }
 
   # Load our gem specification.
