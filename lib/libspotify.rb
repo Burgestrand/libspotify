@@ -33,7 +33,7 @@ module Libspotify
         host_version = $1.to_i
         host_hf = $2
 
-        matches = binaries.select do |bin|
+        matches = PLATFORMS["arm-linux"].select do |bin|
           version, hf = bin.match(/armv(\d+)(hf)?/)[1..2]
           hf == host_hf && version.to_i <= host_version
         end
